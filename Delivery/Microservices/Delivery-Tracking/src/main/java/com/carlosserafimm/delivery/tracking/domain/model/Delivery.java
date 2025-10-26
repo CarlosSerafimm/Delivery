@@ -113,7 +113,7 @@ public class Delivery {
     private void verifyIfCanBePlaced(){
         if (!isFilled()) throw new DomainException();
 
-        if (getStatus().equals(DeliveryStatus.DRAFT)) throw new DomainException();
+        if (!getStatus().equals(DeliveryStatus.DRAFT)) throw new DomainException();
     }
 
     private void verifyIfCanBeEdited(){
