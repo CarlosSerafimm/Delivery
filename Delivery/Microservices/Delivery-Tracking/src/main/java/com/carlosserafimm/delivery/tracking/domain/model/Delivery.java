@@ -35,6 +35,22 @@ public class Delivery {
     private List<Item> items = new ArrayList<Item>();
 
 
+    public UUID addItem(String name, int quantity) {
+        Item item = Item.brandNew(name, quantity);
+        items.add(item);
+        calculateTotalItems();
+        return item.getId();
+    }
+
+    public void removeItem(UUID itemId) {
+        items.removeIf(item -> item.getId().equals(itemId));
+        calculateTotalItems();
+    }
+
+    public void removeAllItems() {
+        items.clear();
+        calculateTotalItems();
+    }
     public static Delivery draft(){
         Delivery delivery = new Delivery();
         delivery.setId(UUID.randomUUID());
@@ -48,5 +64,17 @@ public class Delivery {
 
     public List<Item> getItems() {
         return Collections.unmodifiableList(items);
+    }
+
+    public void changeItemQuantity(UUID itemId, int quantity) {
+        Item item = getItems().stream().filter(i -> i.getId().equals(itemId)).findFirst().orElseThrow();
+
+        item.setQuantity(quantity);
+        calculateTotalItems();
+    }
+
+    private void calculateTotalItems(){
+        int totalItems = getItems().stream().mapToInt(Item::getQuantity).sum();
+        setTotalItems(totalItems);
     }
 }
