@@ -1,14 +1,14 @@
 package com.carlosserafimm.delivery.tracking.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import jakarta.persistence.Embeddable;
+import lombok.*;
 
 @EqualsAndHashCode
 @AllArgsConstructor
 @Getter
 @Builder
+@Embeddable
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class ContactPoint {
 
     private String zipCode;
