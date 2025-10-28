@@ -4,7 +4,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
   datasource:
     url: jdbc:postgresql://localhost:5432/deliverydb
     username: postgres
