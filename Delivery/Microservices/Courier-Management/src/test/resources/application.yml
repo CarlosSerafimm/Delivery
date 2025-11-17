@@ -5,9 +5,9 @@ spring:
     name: courier-management
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: false
   datasource:
-    url: jdbc:postgresql://localhost:5432/courierdb
+    url: jdbc:postgresql://localhost:5432/courierdb_test
     username: postgres
     password: postgres

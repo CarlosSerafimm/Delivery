@@ -1,4 +1,5 @@
-CREATE DATABASE deliverydb;
-CREATE DATABASE courierdb;
-CREATE DATABASE deliverydb_test;
-CREATE DATABASE courierdb_test;
+CREATE DATABASE deliverydb OWNER postgres;
+CREATE DATABASE courierdb OWNER postgres;
+CREATE DATABASE deliverydb_test OWNER postgres;
+CREATE DATABASE courierdb_test OWNER postgres;
+
