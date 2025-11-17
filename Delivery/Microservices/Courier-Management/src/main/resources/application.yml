@@ -24,3 +24,11 @@ spring:
           delivery-placed-event:com.carlosSerafimm.courier.management.infrastructure.DeliveryPlacedIntegrationEvent,
           delivery-picked-up-event:com.fasterxml.jackson.databind.JsonNode,
           delivery-fulfilled-event:com.carlosSerafimm.courier.management.infrastructure.DeliveryFulfilledIntegrationEvent
+eureka:
+  client:
+    server-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+

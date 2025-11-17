@@ -19,3 +19,10 @@ spring:
           delivery-placed-event:com.carlosserafimm.delivery.tracking.domain.event.DeliveryPlacedEvent,
           delivery-picked-up-event:com.carlosserafimm.delivery.tracking.domain.event.DeliveryPickUpEvent,
           delivery-fulfilled-event:com.carlosserafimm.delivery.tracking.domain.event.DeliveryFulfilledEvent
+eureka:
+  client:
+    server-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
