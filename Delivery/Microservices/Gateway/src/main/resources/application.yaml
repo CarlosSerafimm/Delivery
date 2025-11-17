@@ -1,17 +1,23 @@
 server.port: 9999
 
 spring:
-  application:
-    name: Gateway
+  application.name: gateway
   cloud:
     gateway.server.webflux:
       routes:
         - id: delivery-tracking-route
-          uri: http://localhost:8080
+          uri: lb://DELIVERY-TRACKING
           predicates:
             - Path=/api/v1/deliveries/**
             - Method=GET,POST,PUT,DELETE,OPTIONS
         - id: courier-management-route
-          uri: http://localhost:8081
+          uri: lb://COURIER-MANAGEMENT
           predicates:
             - Path=/api/v1/couriers/**
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+    service-url:
+      default-zone: http://localhost:8761/eureka/
