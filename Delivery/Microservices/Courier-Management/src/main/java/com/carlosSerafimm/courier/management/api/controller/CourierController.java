@@ -8,6 +8,7 @@ import com.carlosSerafimm.courier.management.domain.repository.CourierRepository
 import com.carlosSerafimm.courier.management.domain.service.CourierPayoutService;
 import com.carlosSerafimm.courier.management.domain.service.CourierRegistrationService;
 import jakarta.validation.Valid;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
+import java.util.Random;
 import java.util.UUID;
 
 @RestController
@@ -55,7 +57,15 @@ public class CourierController {
     }
 
     @PostMapping("/payout-calculation")
+    @SneakyThrows
     public CourierPayoutResultModel calculate (@RequestBody CourierPayoutCalculationInput input){
+
+        if(Math.random() <0.5){
+            throw new RuntimeException();
+        }
+        int milis = new Random().nextInt(400);
+        Thread.sleep(milis);
+
         BigDecimal payoutFee = courierPayoutService.calculate(input.getDistanceInKm());
         return new CourierPayoutResultModel(payoutFee);
 

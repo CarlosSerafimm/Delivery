@@ -43,3 +43,16 @@ resilience4j:
             - org.springframework.web.client.ResourceAccessException
           ignoreExceptions:
             - org.springframework.web.client.HttpServerErrorException
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        permittedNumberOfCallsInHalfOpenState: 3
+        waitDurationInOpenState: 10000
+    instances:
+      CircuitBraker_CourierAPIClient_PayoutCalculation:
+        baseConfig: default
+        waitDurationInOpenState: 5000
