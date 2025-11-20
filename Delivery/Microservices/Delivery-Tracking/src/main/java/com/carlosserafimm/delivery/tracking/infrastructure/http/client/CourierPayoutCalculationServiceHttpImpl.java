@@ -3,6 +3,8 @@ package com.carlosserafimm.delivery.tracking.infrastructure.http.client;
 import com.carlosserafimm.delivery.tracking.domain.service.CourierPayoutCalculationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.math.BigDecimal;
 
@@ -17,7 +19,16 @@ public class CourierPayoutCalculationServiceHttpImpl implements CourierPayoutCal
     @Override
     public BigDecimal calculatePayout(Double distanceInKm) {
 
-        CourierPayoutResultModel courierPayoutResultModel = courierAPIClient.payoutCalculation(new CourierPayoutCalculationInput(distanceInKm));
-        return courierPayoutResultModel.getPayoutFee();
+        try {
+            CourierPayoutResultModel courierPayoutResultModel = courierAPIClient.payoutCalculation(new CourierPayoutCalculationInput(distanceInKm));
+            return courierPayoutResultModel.getPayoutFee();
+
+        }catch (ResourceAccessException e){
+            throw new GatewayTimeoutException(e.getMessage());
+        }catch (HttpServerErrorException e){
+            throw new BadGatewayException(e.getMessage());
+        }catch (IllegalArgumentException e){
+            throw new BadGatewayException(e.getMessage());
+        }
     }
 }

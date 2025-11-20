@@ -14,6 +14,13 @@ spring:
           uri: lb://COURIER-MANAGEMENT
           predicates:
             - Path=/api/v1/couriers/**
+        - id: courier-management-public-route
+          uri: lb://COURIER-MANAGEMENT
+          predicates:
+            - Path=/public/couriers
+            - Method=GET
+          filters:
+            - RewritePath=/public/couriers, /api/v1/couriers
 
 eureka:
   client:
