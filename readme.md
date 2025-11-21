@@ -1,6 +1,6 @@
 # Delivery Microservices System
 
-Este repositório contém um sistema de entrega desenvolvido em **Java Spring Boot**, estruturado em uma arquitetura de **microserviços**. O projeto utiliza tecnologias modernas como **Kafka**, **Docker**, **Eureka Service Discovery**, **Gateway API**, **Resilience4j**, além de boas práticas de resiliência e comunicação assíncrona.
+Este repositório contém um projeto de estudo para entregas desenvolvido em **Java Spring Boot**, estruturado em uma arquitetura de **microserviços**. O projeto utiliza tecnologias modernas como **Kafka**, **Docker**, **Eureka Service Discovery**, **Gateway API**, **Resilience4j**, além de boas práticas de resiliência e comunicação assíncrona.
 
 ---
 
@@ -152,5 +152,5 @@ Cada microserviço utiliza **PostgreSQL** para persistência dos dados.
 ---
 
 ## 📫 Contato
-Criado por **Carlos Serafim**. Sinta-se à vontade para abrir issues, sugestões e melhorias!
+Criado por **Carlos Serafim**.
 
