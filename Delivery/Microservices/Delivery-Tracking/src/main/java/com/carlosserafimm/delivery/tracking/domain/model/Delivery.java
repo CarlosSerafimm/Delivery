@@ -147,11 +147,12 @@ public class Delivery extends AbstractAggregateRoot<Delivery> {
         setTotalItems(totalItems);
     }
 
-    private void verifyIfCanBePlaced(){
-        if (!isFilled()) throw new DomainException();
-
-        if (!getStatus().equals(DeliveryStatus.DRAFT)) throw new DomainException();
+    private void verifyIfCanBePlaced() {
+        if (!isFilled()) throw new DomainException("Sender, recipient, or totalCost is missing");
+        if (!getStatus().equals(DeliveryStatus.DRAFT))
+            throw new DomainException("Delivery status must be DRAFT to place");
     }
+
 
     private void verifyIfCanBeEdited(){
         if (!getStatus().equals(DeliveryStatus.DRAFT)) throw new DomainException();

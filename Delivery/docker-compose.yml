@@ -36,6 +36,44 @@ services:
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9090
     networks:
       - local-network
+  delivery-tracking:
+    build: ./Microservices/Delivery-Tracking
+    container_name: delivery-tracking
+    restart: on-failure
+    ports:
+      - "0:8080"
+    depends_on:
+      - postgres
+      - kafka
+    networks:
+      - local-network
+  courier-management:
+    build: ./Microservices/Courier-Management
+    container_name: courier-management
+    restart: on-failure
+    ports:
+      - "0:8080"
+    depends_on:
+      - postgres
+      - kafka
+    networks:
+      - local-network
+  gateway:
+    build: ./Microservices/Gateway
+    container_name: gateway
+    restart: on-failure
+    ports:
+      - "9999:9999"
+    networks:
+      - local-network
+  service-registry:
+    build: ./Microservices/Service-Registry
+    container_name: service-registry
+    restart: on-failure
+    ports:
+      - "8761:8761"
+    networks:
+      - local-network
 volumes:
   postgres-data:
   kafka-data:
