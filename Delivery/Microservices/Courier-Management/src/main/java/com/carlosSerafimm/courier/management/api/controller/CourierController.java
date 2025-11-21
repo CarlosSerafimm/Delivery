@@ -57,15 +57,7 @@ public class CourierController {
     }
 
     @PostMapping("/payout-calculation")
-    @SneakyThrows
     public CourierPayoutResultModel calculate (@RequestBody CourierPayoutCalculationInput input){
-
-        if(Math.random() <0.5){
-            throw new RuntimeException();
-        }
-        int milis = new Random().nextInt(400);
-        Thread.sleep(milis);
-
         BigDecimal payoutFee = courierPayoutService.calculate(input.getDistanceInKm());
         return new CourierPayoutResultModel(payoutFee);
 
