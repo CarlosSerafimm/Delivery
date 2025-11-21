@@ -71,6 +71,7 @@ Para rodar o projeto usando **Docker**, basta utilizar o arquivo `docker-compose
 Apenas execute:
 
 ```
+cd Delivery
 docker compose up -d
 ```
 
@@ -90,6 +91,41 @@ Após tudo subir, você poderá acessar:
 
 
 ---
+
+
+## 🐧 Alternativa Como Rodar o Projeto no Linux
+Se você estiver utilizando Linux, há um script que facilita ainda mais a inicialização do ambiente.
+
+### ✔️ Tecnologias necessárias
+- **Docker**
+- **Docker Compose**
+
+### ▶️ Executando o projeto no Linux
+Basta rodar o comando abaixo: 
+
+```
+bash start.sh
+```
+
+### O script inicializará automaticamente todos os serviços definidos no Docker Compose. Além de fazer a verificação de portas
+
+Isso irá subir automaticamente:
+- Kafka + UI
+- PostgreSQL
+- Eureka
+- Gateway (com load balancer)
+- delivery-tracking
+- courier-management
+
+Após tudo subir, você poderá acessar:
+- **Swagger (via Gateway):** http://localhost:9999/webjars/swagger-ui/index.html
+- **Kafka UI:** http://localhost:8084/
+- **Eureka Server:** http://localhost:8761/
+
+
+
+---
+
 
 ## 🗂️ Estrutura do Repositório
 ```
